@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>RGB Slider</title> 
+      <script type="application/javascript">
+          var R = 200, G = 0, B = 0;
+          var R2 = 200, G2 = 0, B2 = 0;
+          function setR(value){
+              R = value;
+          }
+          function setG(value){
+              G = value;
+          }
+          function setB(value){
+              B = value;
+          }
+          function setR2(value){
+              R2 = value;
+          }
+          function setG2(value){
+              G2 = value;
+          }
+          function setB2(value){
+              B2 = value;
+          }
+          function draw(){
+              var ctx = document.getElementById("canvas").getContext("2d");
+              var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+              gradient.addColorStop("0", "rgb(" + R + "," + G + "," + B + ")");
+              gradient.addColorStop("1.0", "rgb(" + R2 + "," + G2 + "," + B2 + ")");
+              ctx.fillStyle = gradient;
+              ctx.fillRect(0, 0, 200, 200);
+              console.log(R + " " + G + " " + B);
+
+              var ctxColor1 = document.getElementById("color1").getContext("2d");
+              ctxColor1 .fillStyle = "rgb(" + R + "," + G + "," + B + ")";
+              ctxColor1 .fillRect(0, 0, 200, 10);
+
+              var ctxColor2 = document.getElementById("color2").getContext("2d");
+              ctxColor2 .fillStyle = "rgb(" + R2 + "," + G2 + "," + B2 + ")";
+              ctxColor2 .fillRect(0, 0, 200, 10);
+              
+          }
+          function showValue(newValue, id){
+              document.getElementById(id).innerHTML=newValue;
+          }
+      </script>
+   </head>
+   <body onload="draw();">
+      <canvas id="canvas"width="200" height="200"></canvas>
+      <div id="RSlider">
+          <label type="text">R:</label>
+          <input type="range" min="0" max="255" value="200" onchange="setR(this.value); showValue(this.value, 'RValue'); draw();"/>
+          <span id="RValue"> 200 </span>
+      </div>
+      <div id="GSlider">
+          <label type="text">G:</label>
+          <input type="range" min="0" max="255" value="0" onchange="setG(this.value); showValue(this.value, 'GValue'); draw();"/>
+          <span id="GValue"> 0 </span>
+      </div>
+      <div id="BSlider">
+          <label type="text">B:</label>
+          <input type="range" min="0" max="255" value="0" onchange="setB(this.value); showValue(this.value, 'BValue'); draw();"/>
+          <span id="BValue"> 0 </span>
+      </div>
+      <canvas id="color1" widht="200" height="10"></canvas>
+
+      <div id="RSlider2">
+          <label type="text">R:</label>
+          <input type="range" min="0" max="255" value="200" onchange="setR2(this.value); showValue(this.value, 'RValue2'); draw();"/>
+          <span id="RValue2"> 200 </span>
+      </div>
+      <div id="GSlider2">
+          <label type="text">G:</label>
+          <input type="range" min="0" max="255" value="0" onchange="setG2(this.value); showValue(this.value, 'GValue2'); draw();"/>
+          <span id="GValue2"> 0 </span>
+      </div>
+      <div id="BSlider2">
+          <label type="text">B:</label>
+          <input type="range" min="0" max="255" value="0" onchange="setB2(this.value); showValue(this.value, 'BValue2'); draw();"/>
+          <span id="BValue2"> 0 </span>
+      </div>
+      <canvas id="color2" widht="200" height="10"></canvas>
+   </body>
+</html>
